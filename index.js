@@ -4,6 +4,45 @@ require('dotenv').config()
 const app = express();
 const PORT = process.env.PORT || 3030;
 app.use(cors())
+const bodyParser = require('body-parser');
+
+
+// Use body-parser middleware to parse JSON in request bodies
+app.use(bodyParser.json());
+
+// Placeholder for live scores
+let liveScores = {
+    match1: {
+        team1: 'Team A',
+        team2: 'Team B',
+        score: '2-1',
+        time: '75th minute'
+    },
+    match2: {
+        team1: 'Team C',
+        team2: 'Team D',
+        score: '0-0',
+        time: '30th minute'
+    },
+};
+
+// Endpoint to get live scores
+app.get('/live-scores', (req, res) => {
+    res.json(liveScores);
+});
+
+// Endpoint to update live scores
+app.post('/update-score', (req, res) => {
+    const { matchId, newScore } = req.body;
+
+    // Update the liveScores object
+    if (liveScores[matchId]) {
+        liveScores[matchId].score = newScore;
+        res.json({ success: true, message: 'Score updated successfully' });
+    } else {
+        res.status(404).json({ success: false, message: 'Match not found' });
+    }
+});
 app.get('/api/match', (req, res) => {
  const matchData = {
    topBatters: [
