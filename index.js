@@ -12,32 +12,34 @@ app.use(bodyParser.json());
 
 // Placeholder for live scores
 let liveScores = {
-    match1: {
+    _firstMatch: {
         team1: 'Team A',
         team2: 'Team B',
-        score: '2-1',
-        time: '75th minute'
+        team1_score: '0-0',
+        team2_score:'',
+        message: 'Match Not Started Yet'
     },
-    match2: {
+    _secondMatch: {
         team1: 'Team C',
         team2: 'Team D',
-        score: '0-0',
-        time: '30th minute'
+        team1_score: '0-0',
+        team2_score:'',
+        message: 'Match Not Started Yet'
     },
 };
 
 // Endpoint to get live scores
-app.get('/live-scores', (req, res) => {
+app.get('/live-scores-today', (req, res) => {
     res.json(liveScores);
 });
 
 // Endpoint to update live scores
-app.post('/update-score', (req, res) => {
-    const { matchId, newScore } = req.body;
-
+app.post('/update-score-live', (req, res) => {
+    const { matchId, firstTeamScore,SecondTeamScore } = req.body;
     // Update the liveScores object
     if (liveScores[matchId]) {
-        liveScores[matchId].score = newScore;
+        liveScores[matchId].team1_score = firstTeamScore;
+        liveScores[matchId].team2_score=SecondTeamScore;
         res.json({ success: true, message: 'Score updated successfully' });
     } else {
         res.status(404).json({ success: false, message: 'Match not found' });
@@ -46,46 +48,30 @@ app.post('/update-score', (req, res) => {
 app.get('/api/match', (req, res) => {
  const matchData = {
    topBatters: [
-     { name: 'Player A', score: 50 },
-     { name: 'Player B', score: 45 },
-     { name: 'Player C', score: 40 },
-     { name: 'Player D', score: 35 },
-     { name: 'Player E', score: 30 },
+     { name: 'Player A', score: 50,teamName:'RTY' },
+     { name: 'Player B', score: 45,teamName:'RTY' },
+     { name: 'Player C', score: 40 ,teamName:'RTY'},
+     { name: 'Player D', score: 35 ,teamName:'RTY'},
+     { name: 'Player E', score: 30,teamName:'RTY' },
    ],
    topBowlers: [
-     { name: 'Bowler X', wickets: 5 },
+     { name: 'Bowler X', wickets: 5 ,teamName:'RTY'},
      { name: 'Bowler Y', wickets: 4 },
      { name: 'Bowler Z', wickets: 3 },
      { name: 'Bowler W', wickets: 2 },
      { name: 'Bowler V', wickets: 1 },
    ],
    pointsTable: [
-     { team: 'Team 1', points: 10 },
-     { team: 'Team 2', points: 8 },
-     { team: 'Team 3', points: 6 },
-     { team: 'Team 4', points: 4 },
-   ],
-   todaysMatches: [
-     { team1: 'Team 1', team2: 'Team 2' },
-     { team1: 'Team 3', team2: 'Team 4' },
+     { team: 'Team 1', points: 10 ,teamName:'RTY',win:1 ,lost:1},
+     { team: 'Team 2', points: 8 ,teamName:'RTY',win:1 ,lost:1},
+     { team: 'Team 3', points: 6 ,teamName:'RTY',win:1 ,lost:1},
+     { team: 'Team 4', points: 4,teamName:'RTY' ,win:1 ,lost:1},
    ],
    players: {
      team1: ['Player 1', 'Player 2', 'Player 3'],
      team2: ['Player 4', 'Player 5', 'Player 6'],
      team3: ['Player 7', 'Player 8', 'Player 9'],
      team4: ['Player 10', 'Player 11', 'Player 12'],
-   },
-   captains: {
-     team1: 'Captain 1',
-     team2: 'Captain 2',
-     team3: 'Captain 3',
-     team4: 'Captain 4',
-   },
-   viceCaptains: {
-     team1: 'Vice Captain 1',
-     team2: 'Vice Captain 2',
-     team3: 'Vice Captain 3',
-     team4: 'Vice Captain 4',
    },
  };
 
