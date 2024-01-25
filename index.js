@@ -12,14 +12,14 @@ app.use(bodyParser.json());
 
 // Placeholder for live scores
 let liveScores = {
-    1: {
+    first: {
         team1: 'Team A',
         team2: 'Team B',
         team1_score: '0-0',
         team2_score:'',
         message: 'Match Not Started Yet'
     },
-    2: {
+    second: {
         team1: 'Team C',
         team2: 'Team D',
         team1_score: '0-0',
