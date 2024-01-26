@@ -57,7 +57,7 @@ app.get('/api/match', (req, res) => {
    ],
    topBowlers: [
      { name: 'Manweet ', wickets: 5 ,teamName:'RTY'},
-     { name: 'Aditya Rajput', wickets: 4 ,teamName:'RTY'},
+     { name: 'Aditya ', wickets: 4 ,teamName:'RTY'},
      { name: 'Bowler Z', wickets: 3 ,teamName:'RTY'},
      { name: 'Bowler W', wickets: 2 ,teamName:'RTY'},
      { name: 'Bowler V', wickets: 1 ,teamName:'RTY'},
