@@ -50,7 +50,7 @@ app.get('/api/match', (req, res) => {
  const matchData = {
    topBatters: [
      { name: 'Prince Kumar', score: 50,teamName:'Royals11' },
-     { name: 'Zeeshan Nawaz', score: 45,teamName:'Titans11' },
+     { name: 'Zeeshan ', score: 45,teamName:'Titans11' },
      { name: 'Rohit ', score: 40 ,teamName:'RTY'},
      { name: 'Player D', score: 35 ,teamName:'RTY'},
      { name: 'Player E', score: 30,teamName:'RTY' },
